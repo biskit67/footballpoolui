@@ -1,0 +1,358 @@
+<html>
+<title>Biskit's 2010 Football Pool Entry Page</title>
+<SCRIPT language=JavaScript>
+<!--
+    function checkfields() {
+         var picks = new Array();
+         var scores = new Array();
+         var entryString = "";
+         var entryString2 = "";
+         var num = document.fbpool.elements.length - 12
+         var validflag = true
+         var points = 16 - (num / 3) + 1
+         
+         for (var i=num; i<num+10; i++) 
+          {
+              if (document.fbpool.elements[i].value == null ||
+                  document.fbpool.elements[i].value == "") 
+                   {
+                    validflag = false
+                    alert("The " + document.fbpool.elements[i].name +
+                          " field is blank. Please enter a value.")
+                    break 
+                   }
+           } 
+         if (validflag == false)
+           { 
+             return validflag
+           }
+         for (var i=2; i<num; i+=3) 
+          {
+              if (document.fbpool.elements[i-1].checked != true &&
+                  document.fbpool.elements[i-2].checked != true)
+                 {
+                   validflag = false
+                   alert (document.fbpool.elements[i-1].name +
+                          " has not been selected.")
+                   break
+                 }
+              else
+              if ((document.fbpool.elements[i].value == null ||
+                  document.fbpool.elements[i].value == "") &&
+                 (typeof document.fbpool.elements[i] != 'submit' ||
+                  typeof document.fbpool.elements[i] != 'reset'))
+                   {
+                    validflag = false
+                    alert("The " + document.fbpool.elements[i-1].name +
+                          " field is blank. Please enter a value.")
+                    break 
+                   }
+               else
+               if (document.fbpool.elements[i].value > 16) 
+                   {
+                    validflag = false
+                    alert("The " + document.fbpool.elements[i].name +
+                          " value is too large. Must be <= 16.")
+                    break 
+                   }
+               else
+               if (document.fbpool.elements[i].value < points) 
+                   {
+                    validflag = false
+                    alert("The " + document.fbpool.elements[i].name +
+                          " value is too small. Must be >= " + points)
+                    break 
+                   }
+           }
+          if (validflag == false)
+           { 
+             return validflag
+           }
+          var k = 1;
+          for (var i=2; i<num; i+=3) 
+           {
+            scores[k] = document.fbpool.elements[i].value;
+            k++;
+            for (var j=i+3; j<num; j+=3)
+              {
+                if (document.fbpool.elements[i].value ==
+                    document.fbpool.elements[j].value)
+                   {
+                    validflag = false
+                    alert("The " + document.fbpool.elements[i].value +
+                          " point value is duplicated.")
+                    j = num
+                    break 
+                   }
+              }
+           }
+          if (validflag == false)
+           { 
+             return validflag
+           }
+          var j = 1;
+          for (var i=0; i<num; i+=3)
+              {
+                if (document.fbpool.elements[i].checked == true)
+                  {
+                    picks[j] = "v"
+                  }
+                else
+                  {
+                    picks[j] = "h"
+                  }
+               j++;
+              }
+           for (var i=1; i<num; i++)
+              {
+                if (picks[i] != null && picks[i] != "")
+                  {
+                    entryString = entryString + picks[i] + scores[i]
+                  }
+               }
+          entryString2 = document.fbpool.realname.value + "*" + entryString;
+          document.fbpool.entry.value = entryString2;
+                  
+          return validflag
+      }
+     function populatePoints(pointChosen){
+      }
+// -->
+</SCRIPT>
+
+<link href="Level1_Arial.css" rel="stylesheet" type="text/css">
+</HEAD>
+<BODY bgColor=white leftMargin=0 link=blue text=blue topMargin=0 
+vLink=blue marginwidth="0" marginheight="0">
+<TABLE border=0 cellPadding=0 cellSpacing=0>
+  <TR height=140>
+    <TD colSpan=2 height=200 width=700><IMG 
+      src="fbpool10x.gif"> </TD></TR>
+  <TR>
+    <TD vAlign=top width=140>
+      <TABLE border=0 cellPadding=0 cellSpacing=0>
+        <TR>
+          <TD height=350 vAlign=top width=140><FONT face=impact 
+            size=3><BR><A 
+            href="fbstandings.html">Standings</A><BR><BR><FONT 
+            color=D00000>Submit Entry</FONT><BR><BR><A 
+            href="fbrules.html">Rules</A><BR><BR><A 
+            href="index.html">Home</A><BR><BR><A 
+            href="mailto:kjsobiski@att.net">Questions?</A> 
+      </FONT></TD></TR></TABLE></TD>
+    <TD vAlign=top width=560>
+      <FORM  action="cgi-bin/form.pl" method=post
+      name=fbpool onSubmit="return checkfields()">
+      <P align=center><FONT color=D00000 size=+2><B>Choose the team you think 
+      will win</B></FONT><BR><BR>
+      <TABLE>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60></TD>
+          <TD width=185><FONT color=D00000><B>Road</B></FONT></TD>
+          <TD width=185><B><FONT color=D00000>Home</FONT></B></TD>
+          <TD width=15><B><FONT color=D00000>Pts</FONT></B></TD></TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 1</TD>
+          <TD bgcolor=#C0C0C0 width=185><INPUT name=Game_1 type=radio 
+            value="Jacksonville WINS at Buffalo">
+            Jacksonville (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_1 type=radio 
+            value="Jacksonville loses at Buffalo">
+            Buffalo (0-4) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_1_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 2</TD>
+          <TD width=185><INPUT name=Game_2 type=radio 
+            value="Denver WINS at Baltimore">
+            Denver (2-2) </TD>
+          <TD width=185><INPUT name=Game_2 type=radio 
+            value="Denver loses at Baltimore">
+            Baltimore (3-1) </TD>
+          <TD width=15><SELECT name="Game_2_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 3</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_3 type=radio 
+            value="Kansas City WINS at Indianapolis">
+            Kansas City (3-0)</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_3 type=radio 
+            value="Kansas City loses at Indianapolis">
+            Indianapolis (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_3_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 4</TD>
+          <TD width=185><INPUT name=Game_4 type=radio 
+            value="Green Bay WINS at Washington">
+            Green Bay (3-1) </TD>
+          <TD width=185><INPUT name=Game_4 type=radio 
+            value="Green Bay loses at Washington">
+            Washington (2-2) </TD>
+          <TD width=15><SELECT name="Game_4_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 5</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_5 type=radio 
+            value="St. Louis WINS at Detroit">
+            St. Louis (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_5 type=radio 
+            value="St. Louis loses at Detroit">
+            Detroit (0-4) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_5_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 6</TD>
+          <TD width=185><INPUT name=Game_6 type=radio 
+            value="Chicago WINS at Carolina">
+            Chicago (3-1) </TD>
+          <TD width=185><INPUT name=Game_6 type=radio 
+            value="Chicago loses at Carolina">
+            Carolina (0-4) </TD>
+          <TD width=15><SELECT name="Game_6_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 7</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_7 type=radio 
+            value="Tampa Bay WINS at Cincinnati">
+            Tampa Bay (2-1) </TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_7 type=radio 
+            value="Tampa Bay loses at Cincinnati">
+            Cincinnati (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_7_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 8</TD>
+          <TD width=185><INPUT name=Game_8 type=radio 
+            value="Atlanta WINS at Cleveland">
+            Atlanta (3-1) </TD>
+          <TD width=185><INPUT name=Game_8 type=radio 
+            value="Atlanta loses at Cleveland">
+            Cleveland (1-3) </TD>
+          <TD width=15><SELECT name="Game_8_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 9</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_9 type=radio 
+            value="NY Giants WINS at Houston">
+            NY Giants (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_9 type=radio 
+            value="NY Giants loses at Houston">
+            Houston (3-1) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_9_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 10</TD>
+          <TD width=185><INPUT name=Game_10 type=radio 
+            value="New Orleans WINS at Arizona">
+            New Orleans (3-1) </TD>
+          <TD width=185><INPUT name=Game_10 type=radio 
+            value="New Orleans loses at Arizona">
+            Arizona (2-2) </TD>
+          <TD width=15><SELECT name="Game_10_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 11</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_11 type=radio 
+            value="Tennessee WINS at Dallas">
+            Tennessee (2-2) </TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_11 type=radio 
+            value="Tennessee loses at Dallas">
+            Dallas (1-2) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_11_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 12</TD>
+          <TD width=185><INPUT name=Game_12 type=radio 
+            value="San Diego WINS at Oakland">
+            San Diego (2-2) </TD>
+          <TD width=185><INPUT name=Game_12 type=radio 
+            value="San Diego loses at Oakland">
+            Oakland (1-3) </TD>
+          <TD width=15><SELECT name="Game_12_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD bgColor=#C0C0C0 width=60># 13</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_13 type=radio 
+            value="Philadelphia WINS at San Francisco">
+          Philadelphia (2-2)</TD>
+          <TD bgColor=#C0C0C0 width=185><INPUT name=Game_13 type=radio 
+            value="Philadelphia loses at San Francisco">
+          San Francisco  (0-4) </TD>
+          <TD bgColor=#C0C0C0 width=15><SELECT name="Game_13_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+        <TR>
+          <TD width=100></TD>
+          <TD width=60># 14</TD>
+          <TD width=185><INPUT name=Game_14 type=radio 
+            value="Minnesota WINS at NY Jets">
+            Minnesota (1-2)</TD>
+          <TD width=185><INPUT name=Game_14 type=radio 
+            value="Minnesota loses at NY Jets">
+            NY Jets (3-1) </TD>
+          <TD width=15><SELECT name="Game_14_Points" onChange="populatePoints(this)"><option value = "0" selected>0<option value = "1">1<option value = "2">2<option value = "3">3<option value = "4">4<option value = "5">5<option value = "6">6<option value = "7">7<option value = "8">8<option value = "9">9<option value = "10">10<option value = "11">11<option value = "12">12<option value = "13">13<option value = "14">14<option value = "15">15<option value = "16">16
+          </SELECT></TD>
+          </TR>
+    </TABLE>
+Bye Teams:Miami, New England, Pittsburgh, Seattle   </FONT></P>
+<INPUT 
+               name=recipient type=hidden value=kjsobiski@att.net> 
+      <INPUT name=subject type=hidden value="Football Pool Picks"> <INPUT 
+      name=return_link_url type=hidden 
+      value="http://biskitpoolnet.ipage.com/index.html"> <INPUT 
+      name=return_link_title type=hidden value="Back to Main Page">
+      <TABLE>
+        <TR>
+          <TD width=100></TD>
+          <TD>Email <INPUT maxLength=30 name="email" size=30></TD></TR>
+        <TR>
+          <TD width=100></TD>
+          <TD>Name <INPUT maxLength=50 name=realname size=50></TD></TR>
+        <TR>
+          <TD width=100></TD>
+          <TD>Sheet Type <INPUT maxLength=2 name="sheet type" size=2> 
+            (W)eekly, (S)eason, or (B)oth </TD></TR>
+        <TR>
+          <TD width=100></TD>
+          <TD>How many rushing yards for K.C. this week?
+		    <INPUT maxLength=6 name=tiebreaker size=6></TD></TR></TABLE></P><INPUT 
+      name="standings page" type=hidden 
+      value=http://biskitpoolnet.ipage.com/fbstandings.html> 
+      <INPUT name=entry type=hidden>
+      <CENTER><INPUT type=submit value="Click here to Send"> <INPUT type=reset value="Click here to Clear"> 
+  </CENTER></FORM></TD></TR></TABLE></BODY></HTML>
+  <! Buffalo, Miami, NY Jets, New England>
+  <! Indianapolis, Tennessee, Jacksonville, Houston>
+  <! Cleveland, Cincinnati, Pittburgh, Baltimore>
+  <! Denver, Oakland, San Diego, Kansas City>
+  <! Dallas, Washington, NY Giants, Philadelphia>
+  <! Chicago, Green Bay, Minnesota, Detroit>
+  <! Tampa Bay, Carolina, Atlanta, New Orleans>
+  <! Seattle, San Francisco, St. Louis, Arizona>
